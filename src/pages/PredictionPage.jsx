@@ -280,10 +280,6 @@ const PredictionContent = () => {
               <p className="text-gray-400 mb-2 max-w-md mx-auto">
                 Please connect your wallet to view and place bets on upcoming matches
               </p>
-              <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-                <i className="fa-solid fa-arrow-up"></i>
-                Use the "Connect Wallet" button in the navigation bar above
-              </p>
             </div>
           ) : isWrongNetwork ? (
             <div className="text-center">

@@ -273,10 +273,6 @@ const StakingContent = () => {
               </div>
               <h2 className="text-2xl font-bold text-[#69d169] mb-3">Connect Your Wallet</h2>
               <p className="text-gray-400 mb-2 max-w-md mx-auto">Please connect your wallet to start staking</p>
-              <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-                <i className="fa-solid fa-arrow-up"></i>
-                Use the "Connect Wallet" button in the navigation bar above
-              </p>
             </div>
           ) : (
             <div className="space-y-6">
