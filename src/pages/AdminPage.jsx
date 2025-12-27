@@ -10,7 +10,7 @@ import CreateMatchModal from '../components/CreateMatchModal';
 import CreateFactoryModal from '../components/CreateFactoryModal';
 import MatchCard from '../components/MatchCard';
 import FactorySelector from '../components/FactorySelector';
-import { factoryAbi, sportsBettingAddresses, matchWithDrawAbi, matchNoDrawAbi } from '../config/sportsBettingAbi';
+import { factoryAbi, sportsBettingAddresses, matchWithDrawAbi, matchNoDrawAbi, masterFactoryAbi } from '../config/sportsBettingAbi';
 import Navbar from '../components/Navbar';
 import GridScan from '../components/GridScan';
 import Swal from 'sweetalert2';
@@ -27,11 +27,47 @@ const AdminContent = () => {
   const [loading, setLoading] = useState(false);
   const [factoryContract, setFactoryContract] = useState(null);
   
+  // Admin access control
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [checkingAdmin, setCheckingAdmin] = useState(true);
+  const [masterFactoryOwner, setMasterFactoryOwner] = useState(null);
+  
   // Staking config state
   const [stakingConfig, setStakingConfig] = useState({ nativeStaking: '', tokenStaking: '' });
   const [stakingInputs, setStakingInputs] = useState({ nativeStaking: '', tokenStaking: '' });
   const [loadingStaking, setLoadingStaking] = useState(false);
   const [savingStaking, setSavingStaking] = useState(false);
+
+  // Check if connected wallet is admin (MasterFactory owner)
+  useEffect(() => {
+    const checkAdminAccess = async () => {
+      setCheckingAdmin(true);
+      if (!account || !window.ethereum) {
+        setIsAdmin(false);
+        setCheckingAdmin(false);
+        return;
+      }
+
+      try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const masterFactory = new ethers.Contract(
+          sportsBettingAddresses.masterFactory,
+          masterFactoryAbi,
+          provider
+        );
+        
+        const owner = await masterFactory.owner();
+        setMasterFactoryOwner(owner);
+        setIsAdmin(owner.toLowerCase() === account.toLowerCase());
+      } catch (error) {
+        console.error('Error checking admin access:', error);
+        setIsAdmin(false);
+      }
+      setCheckingAdmin(false);
+    };
+
+    checkAdminAccess();
+  }, [account]);
 
   useEffect(() => {
     console.log('🏭 AdminPage: currentFactory changed:', currentFactory);
@@ -356,9 +392,65 @@ const AdminContent = () => {
           <p className="text-sm text-gray-400">Create and manage sports betting matches</p>
         </div>
 
+        {/* Loading State */}
+        {checkingAdmin && (
+          <div className="max-w-md mx-auto">
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#141414] rounded-2xl p-8 border border-white/10 text-center">
+              <i className="fa-solid fa-spinner fa-spin text-4xl text-[#69d169] mb-4"></i>
+              <p className="text-gray-400">Verifying admin access...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Not Connected State */}
+        {!checkingAdmin && !account && (
+          <div className="max-w-md mx-auto">
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#141414] rounded-2xl p-8 border border-white/10 text-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-yellow-500/20 to-yellow-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-yellow-500/30">
+                <i className="fa-solid fa-wallet text-4xl text-yellow-500"></i>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Wallet Not Connected</h2>
+              <p className="text-gray-400 text-sm mb-4">Please connect your wallet to access the admin panel.</p>
+            </div>
+          </div>
+        )}
+
+        {/* Access Denied State */}
+        {!checkingAdmin && account && !isAdmin && (
+          <div className="max-w-md mx-auto">
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#141414] rounded-2xl p-8 border border-red-500/30 text-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-red-500/20 to-red-600/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-red-500/30">
+                <i className="fa-solid fa-ban text-4xl text-red-500"></i>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-2">Access Denied</h2>
+              <p className="text-gray-400 text-sm mb-4">This page is restricted to admin only.</p>
+              <div className="bg-black/40 rounded-lg p-4 text-left space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span className="text-gray-500">Your wallet:</span>
+                  <span className="text-white font-mono">{account.slice(0, 8)}...{account.slice(-6)}</span>
+                </div>
+                {masterFactoryOwner && (
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-500">Admin wallet:</span>
+                    <span className="text-[#69d169] font-mono">{masterFactoryOwner.slice(0, 8)}...{masterFactoryOwner.slice(-6)}</span>
+                  </div>
+                )}
+              </div>
+              <a 
+                href="/" 
+                className="inline-flex items-center mt-6 px-6 py-2 bg-gradient-to-br from-[#69d169] to-[#5bc15b] text-[#0a0a0a] font-bold rounded-xl hover:brightness-90 transition-all text-sm"
+              >
+                <i className="fa-solid fa-home mr-2"></i>
+                Back to Home
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* Admin Content - Only show if admin */}
+        {!checkingAdmin && account && isAdmin && (
         <div className="max-w-4xl mx-auto space-y-6">
             {/* Admin Info */}
-            {account && (
               <div className="bg-gradient-to-br from-[#1a1a1a] to-[#141414] rounded-2xl p-5 border border-white/10">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
@@ -378,12 +470,11 @@ const AdminContent = () => {
                   <div className="px-3 py-1.5 bg-gradient-to-r from-[#69d169]/20 to-[#69d169]/10 rounded-lg border border-[#69d169]/30">
                     <span className="text-[#69d169] font-bold text-xs flex items-center">
                       <span className="w-1.5 h-1.5 bg-[#69d169] rounded-full mr-2 animate-pulse"></span>
-                      ACTIVE
+                      ADMIN
                     </span>
                   </div>
                 </div>
               </div>
-            )}
 
             {/* Factory Selector & Management */}
             <div className="bg-gradient-to-br from-[#1a1a1a] to-[#141414] rounded-2xl p-5 border border-white/10">
@@ -556,6 +647,7 @@ const AdminContent = () => {
               )}
             </div>
           </div>
+        )}
       </div>
 
       {/* Create Factory Modal */}
