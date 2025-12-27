@@ -812,7 +812,7 @@ const ContractsSection = () => (
   <div className="space-y-6">
     <h1 className="text-2xl font-bold text-white">Smart Contracts</h1>
     <p className="text-gray-400">
-      All contracts are deployed on Mantle Testnet and verified on Blockscout.
+      All contracts are deployed on Mantle Testnet and verified on <a href="https://sepolia.mantlescan.xyz" target="_blank" rel="noopener noreferrer" className="text-[#69d169] hover:underline">sepolia.mantlescan.xyz</a>.
     </p>
 
     {/* Staking Contracts */}
