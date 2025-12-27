@@ -1,0 +1,156 @@
+// Factory Contract ABI (updated with staking addresses)
+export const factoryAbi = [
+  "function createMatchWithDraw(string memory league, string memory homeTeam, string memory awayTeam, uint256 matchStartTime, uint256 oddsHome, uint256 oddsAway, uint256 oddsDraw) external returns (address)",
+  "function createMatchNoDraw(string memory league, string memory teamA, string memory teamB, uint256 matchStartTime, uint256 oddsA, uint256 oddsB) external returns (address)",
+  "function getAllMatchesWithDraw() external view returns (address[] memory)",
+  "function getAllMatchesNoDraw() external view returns (address[] memory)",
+  "function getActiveMatchesWithDraw() external view returns (address[] memory)",
+  "function getActiveMatchesNoDraw() external view returns (address[] memory)",
+  "function getTotalMatchesWithDraw() external view returns (uint256)",
+  "function getTotalMatchesNoDraw() external view returns (uint256)",
+  "function isMatchActive(address) external view returns (bool)",
+  "function matchLeague(address) external view returns (string)",
+  "function setMatchActive(address matchAddress, bool active) external",
+  "function setStakingAddresses(address _nativeStaking, address _tokenStaking) external",
+  "function getStakingAddresses() external view returns (address, address)",
+  "function nativeStaking() external view returns (address)",
+  "function tokenStaking() external view returns (address)",
+  "function owner() external view returns (address)",
+  "event MatchWithDrawCreated(address indexed matchAddress, string homeTeam, string awayTeam, uint256 matchStartTime, uint256 indexed timestamp)",
+  "event MatchNoDrawCreated(address indexed matchAddress, string teamA, string teamB, uint256 matchStartTime, uint256 indexed timestamp)",
+  "event MatchStatusChanged(address indexed matchAddress, bool isActive)",
+  "event StakingAddressesUpdated(address nativeStaking, address tokenStaking)"
+];
+
+// Match With Draw Contract ABI (updated with revenue sharing)
+export const matchWithDrawAbi = [
+  "function homeTeam() external view returns (string memory)",
+  "function awayTeam() external view returns (string memory)",
+  "function homeTeamImage() external view returns (string memory)",
+  "function awayTeamImage() external view returns (string memory)",
+  "function matchStartTime() external view returns (uint256)",
+  "function bettingDeadline() external view returns (uint256)",
+  "function oddsHome() external view returns (uint256)",
+  "function oddsAway() external view returns (uint256)",
+  "function oddsDraw() external view returns (uint256)",
+  "function maxBetAmount() external view returns (uint256)",
+  "function totalBetsHome() external view returns (uint256)",
+  "function totalBetsAway() external view returns (uint256)",
+  "function totalBetsDraw() external view returns (uint256)",
+  "function ownerLiquidity() external view returns (uint256)",
+  "function totalOwnerDeposit() external view returns (uint256)",
+  "function nativeStaking() external view returns (address)",
+  "function tokenStaking() external view returns (address)",
+  "function nativeStakingShare() external view returns (uint256)",
+  "function tokenStakingShare() external view returns (uint256)",
+  "function result() external view returns (uint8)",
+  "function finalized() external view returns (bool)",
+  "function owner() external view returns (address)",
+  "function depositLiquidity() external payable",
+  "function bet(uint8 choice) external payable",
+  "function finalizeResult(uint8 _result) external",
+  "function claim() external",
+  "function withdrawProfit() external",
+  "function setTeamImages(string memory _homeTeamImage, string memory _awayTeamImage) external",
+  "function setMaxBetAmount(uint256 _maxBetAmount) external",
+  "function setStakingAddresses(address _nativeStaking, address _tokenStaking) external",
+  "function getMatchInfo() external view returns (string memory, string memory, uint256, uint256, uint256, uint256, uint256, uint8, bool)",
+  "function getBettingPools() external view returns (uint256, uint256, uint256, uint256)",
+  "function getTeamImages() external view returns (string memory, string memory)",
+  "function getMaxBetAmount() external view returns (uint256)",
+  "function getUserBets(address user) external view returns (uint256, uint256, uint256, bool)",
+  "function getStakingAddresses() external view returns (address, address)",
+  "function getRevenueShareInfo() external view returns (uint256, uint256, uint256)",
+  "function isBettingOpen() external view returns (bool)",
+  "function getTimeLeft() external view returns (uint256)",
+  "event LiquidityDeposited(address indexed owner, uint256 amount)",
+  "event BetPlaced(address indexed user, uint8 choice, uint256 amount)",
+  "event ResultFinalized(uint8 result)",
+  "event WinningsClaimed(address indexed user, uint256 amount)",
+  "event ProfitWithdrawn(address indexed owner, uint256 amount, uint256 profit, uint256 bonusNative, uint256 bonusToken)",
+  "event StakingAddressesUpdated(address nativeStaking, address tokenStaking)"
+];
+
+// Match No Draw Contract ABI (updated with revenue sharing)
+export const matchNoDrawAbi = [
+  "function teamA() external view returns (string memory)",
+  "function teamB() external view returns (string memory)",
+  "function teamAImage() external view returns (string memory)",
+  "function teamBImage() external view returns (string memory)",
+  "function matchStartTime() external view returns (uint256)",
+  "function bettingDeadline() external view returns (uint256)",
+  "function oddsA() external view returns (uint256)",
+  "function oddsB() external view returns (uint256)",
+  "function maxBetAmount() external view returns (uint256)",
+  "function totalBetsA() external view returns (uint256)",
+  "function totalBetsB() external view returns (uint256)",
+  "function ownerLiquidity() external view returns (uint256)",
+  "function totalOwnerDeposit() external view returns (uint256)",
+  "function nativeStaking() external view returns (address)",
+  "function tokenStaking() external view returns (address)",
+  "function nativeStakingShare() external view returns (uint256)",
+  "function tokenStakingShare() external view returns (uint256)",
+  "function result() external view returns (uint8)",
+  "function finalized() external view returns (bool)",
+  "function owner() external view returns (address)",
+  "function depositLiquidity() external payable",
+  "function bet(uint8 choice) external payable",
+  "function finalizeResult(uint8 _result) external",
+  "function claim() external",
+  "function withdrawProfit() external",
+  "function setTeamImages(string memory _teamAImage, string memory _teamBImage) external",
+  "function setMaxBetAmount(uint256 _maxBetAmount) external",
+  "function setStakingAddresses(address _nativeStaking, address _tokenStaking) external",
+  "function getMatchInfo() external view returns (string memory, string memory, uint256, uint256, uint256, uint256, uint8, bool)",
+  "function getBettingPools() external view returns (uint256, uint256, uint256)",
+  "function getTeamImages() external view returns (string memory, string memory)",
+  "function getMaxBetAmount() external view returns (uint256)",
+  "function getUserBets(address user) external view returns (uint256, uint256, bool)",
+  "function getStakingAddresses() external view returns (address, address)",
+  "function getRevenueShareInfo() external view returns (uint256, uint256, uint256)",
+  "function isBettingOpen() external view returns (bool)",
+  "function getTimeLeft() external view returns (uint256)",
+  "event LiquidityDeposited(address indexed owner, uint256 amount)",
+  "event BetPlaced(address indexed user, uint8 choice, uint256 amount)",
+  "event ResultFinalized(uint8 result)",
+  "event WinningsClaimed(address indexed user, uint256 amount)",
+  "event ProfitWithdrawn(address indexed owner, uint256 amount, uint256 profit, uint256 bonusNative, uint256 bonusToken)",
+  "event StakingAddressesUpdated(address nativeStaking, address tokenStaking)"
+];
+
+// Master Factory Contract ABI (updated - registry only, no create)
+export const masterFactoryAbi = [
+  "function addFactory(address factoryAddress, string memory name) external returns (address)",
+  "function addFactoryWithStaking(address factoryAddress, string memory name) external returns (address)",
+  "function addExistingFactory(address factoryAddress, string memory name) external",
+  "function setFactoryActive(address factoryAddress, bool active) external",
+  "function setFactoryName(address factoryAddress, string memory name) external",
+  "function removeFactory(address factoryAddress) external",
+  "function setDefaultStakingAddresses(address _nativeStaking, address _tokenStaking) external",
+  "function updateFactoryStaking(address factoryAddress, address _nativeStaking, address _tokenStaking) external",
+  "function getAllFactories() external view returns (address[] memory)",
+  "function getActiveFactories() external view returns (address[] memory)",
+  "function getFactoryInfo(address factoryAddress) external view returns (string, bool, uint256, uint256)",
+  "function getTotalFactories() external view returns (uint256)",
+  "function getDefaultStakingAddresses() external view returns (address, address)",
+  "function isFactory(address) external view returns (bool)",
+  "function factoryName(address) external view returns (string)",
+  "function factoryActive(address) external view returns (bool)",
+  "function owner() external view returns (address)",
+  "event FactoryAdded(address indexed factoryAddress, string name, uint256 timestamp)",
+  "event FactoryStatusChanged(address indexed factoryAddress, bool active)",
+  "event DefaultStakingUpdated(address nativeStaking, address tokenStaking)"
+];
+
+// Contract addresses (update after deployment)
+export const sportsBettingAddresses = {
+  // Master Factory - Deploy this ONCE and never change
+  masterFactory: '0x3EF993BEe30c99A840c4b61fc1c9d08FCEdA3857',
+  
+  // Legacy factory - Keep this for backward compatibility
+  // After master factory is deployed, you can add this factory to master via UI
+  factory: '0x00000000000000000000000000000000000',
+  
+  // NOTE: Child factories created by master factory will be fetched automatically
+  // You DON'T need to add them here manually!
+};

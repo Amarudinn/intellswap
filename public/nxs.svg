@@ -1,0 +1,25 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definisi gradient -->
+  <defs>
+    <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16a3c2"/>
+      <stop offset="100%" stop-color="#0d5d80"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sisi kiri -->
+  <polygon points="250,250 60,360 60,140 250,40"
+           fill="url(#cubeGradient)"/>
+  <!-- Sisi kanan -->
+  <polygon points="250,250 440,360 440,140 250,40"
+           fill="url(#cubeGradient)"/>
+  <!-- Sisi atas -->
+  <polygon points="60,140 250,40 440,140 250,250"
+           fill="url(#cubeGradient)"/>
+  <!-- Sisi kiri bawah -->
+  <polygon points="250,460 60,360 60,140 250,250"
+           fill="url(#cubeGradient)"/>
+  <!-- Sisi kanan bawah -->
+  <polygon points="250,460 440,360 440,140 250,250"
+           fill="url(#cubeGradient)"/>
+</svg>
