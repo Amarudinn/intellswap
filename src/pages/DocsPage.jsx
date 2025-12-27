@@ -275,6 +275,11 @@ const StakingSection = () => (
               <td className="py-2 text-[#69d169]">7%</td>
               <td className="py-2 text-yellow-400">10%</td>
             </tr>
+            <tr className="border-b border-white/5">
+              <td className="py-2">USDC</td>
+              <td className="py-2"><span className="text-purple-400">ERC20</span></td>
+              <td className="py-2 text-[#69d169]">7%</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -379,7 +384,7 @@ const StakingSection = () => (
     <div className="border-t border-white/10 pt-4 mt-6">
       <h3 className="text-white font-semibold mb-3">How to Stake</h3>
       <ol className="space-y-2 text-gray-400 text-sm list-decimal list-inside pl-4">
-        <li>Select staking pool (MNT & INTEL)</li>
+        <li>Select staking pool (MNT, INTEL & USDC)</li>
         <li>Enter amount to stake</li>
         <li>Click "Stake" and confirm transaction</li>
         <li>Earn APY rewards over time</li>

@@ -19,6 +19,7 @@ Stake MNT or INTEL to earn APY rewards plus bonus revenue share from betting pro
 |------|------|-----|---------------|
 | MNT | Native | 14% | 15% |
 | INTEL | ERC20 | 7% | 10% |
+| USDC | ERC20  | 7% |     |
 
 **Revenue Share System:**
 When match owner withdraws betting profit, a percentage is distributed to stakers:
