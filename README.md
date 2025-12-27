@@ -64,9 +64,9 @@ Bet on sports matches with fixed odds. Fully on-chain and trustless.
 
 | Contract | Address |
 |----------|---------|
-| NativeStaking | `0x6a9f145369B37FD34B0B079E22294CcD0126eD3A` |
-| TokenStakingNativeReward | `0x37174CbFaf4C595b113E5556a3eb64e35516a9ef` |
-| MasterFactory | `0xFD8781340934aBCA7F205992B7316304A6c9f242` |
+| NativeStaking | `0xD642Fb88DA5Bd4e7d90F829298Ee12dda158A1d7` |
+| TokenStakingNativeReward | `0x91F193c3F24BaE45A0c592E7833354DE00A872C2` |
+| MasterFactory | `0x3EF993BEe30c99A840c4b61fc1c9d08FCEdA3857` |
 
 
 ## Contract Functions

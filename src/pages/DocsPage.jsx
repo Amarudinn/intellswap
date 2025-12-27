@@ -881,34 +881,34 @@ const ContractsSection = () => (
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
           <span className="text-gray-500 w-48">NativeStaking:</span>
           <a 
-            href="https://sepolia.mantlescan.xyz/address/0xa4D076bEfD5cB7fFcDdB45ba650FC2B619153eE4" 
+            href="https://sepolia.mantlescan.xyz/address/0xD642Fb88DA5Bd4e7d90F829298Ee12dda158A1d7" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-[#69d169] break-all hover:underline"
           >
-            0x6a9f145369B37FD34B0B079E22294CcD0126eD3A
+            0xD642Fb88DA5Bd4e7d90F829298Ee12dda158A1d7
           </a>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
           <span className="text-gray-500 w-48">TokenStakingNativeReward:</span>
           <a 
-            href="https://sepolia.mantlescan.xyz/address/0xC4ae43DBB174E1d8742Ed78f1b4e9A54314A693C" 
+            href="https://sepolia.mantlescan.xyz/address/0x91F193c3F24BaE45A0c592E7833354DE00A872C2" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-[#69d169] break-all hover:underline"
           >
-            0x37174CbFaf4C595b113E5556a3eb64e35516a9ef
+            0x91F193c3F24BaE45A0c592E7833354DE00A872C2
           </a>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
           <span className="text-gray-500 w-48">MasterFactory:</span>
           <a 
-            href="https://sepolia.mantlescan.xyz/address/0xd2Bf50640E601060a35303e0A4cbE5aDaD8eD394" 
+            href="https://sepolia.mantlescan.xyz/address/0x3EF993BEe30c99A840c4b61fc1c9d08FCEdA3857" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-[#69d169] break-all hover:underline"
           >
-            0xFD8781340934aBCA7F205992B7316304A6c9f242
+            0x3EF993BEe30c99A840c4b61fc1c9d08FCEdA3857
           </a>
         </div>
       </div>
