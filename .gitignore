@@ -56,3 +56,5 @@ coverage.json
 .cache
 .temp
 .tmp
+
+contracts
